@@ -1,46 +1,46 @@
 # Artisan CLI
 
-- [Introduction](#introduction)
-- [Usage](#usage)
-- [Calling Commands Outside Of CLI](#calling-commands-outside-of-cli)
-- [Scheduling Artisan Commands](#scheduling-artisan-commands)
+- [Pengantar](#introduction)
+- [Pemakaian](#usage)
+- [Memanggil Perintah dari Luar CLI](#calling-commands-outside-of-cli)
+- [Penjadwalan Perintah Artisan](#scheduling-artisan-commands)
 
 <a name="introduction"></a>
-## Introduction
+## Pengantar
 
-Artisan is the name of the command-line interface included with Laravel. It provides a number of helpful commands for your use while developing your application. It is driven by the powerful Symfony Console component.
+Artisan adalah nama dari antarmuka baris perintah (command-line) yang disertakan bersama Laravel. Ini memberikan sejumlah perintah yang membantu untuk penggunaan Anda ketika mengembangkan aplikasi Anda. Hal ini didorong oleh kuat komponen Symfony Console.
 
 <a name="usage"></a>
-## Usage
+## Pemakaian
 
-#### Listing All Available Commands
+#### Daftar Semua Perintah yang Tersedia
 
-To view a list of all available Artisan commands, you may use the `list` command:
+Untuk melihat daftar semua perintah Artisan yang tersedia, Anda dapat menggunakan perintah `list`:
 
 	php artisan list
 
-#### Viewing The Help Screen For A Command
+#### Melihat Layar Bantuan Untuk Sebuah Perintah
 
-Every command also includes a "help" screen which displays and describes the command's available arguments and options. To view a help screen, simply precede the name of the command with `help`:
+Setiap perintah juga menyertakan "bantuan" layar yang menampilkan dan menjelaskan argumen dan pilihan perintah yang tersedia. Untuk melihat layar bantuan, cukup mengawali nama perintah dengan `help`:
 
 	php artisan help migrate
 
-#### Specifying The Configuration Environment
+#### Menentukan Konfigurasi Lingkungan
 
-You may specify the configuration environment that should be used while running a command using the `--env` switch:
+Anda dapat menentukan lingkungan konfigurasi yang harus digunakan saat menjalankan perintah dengan menggunakan `beralih --env`:
 
 	php artisan migrate --env=local
 
-#### Displaying Your Current Laravel Version
+#### Menampilkan Versi Laravel Saat ini
 
-You may also view the current version of your Laravel installation using the `--version` option:
+Anda juga dapat melihat versi saat ini dari instalasi Laravel Anda menggunakan opsi `--version`:
 
 	php artisan --version
 
 <a name="calling-commands-outside-of-cli"></a>
-## Calling Commands Outside Of CLI
+## Memanggil Perintah dari Luar CLI
 
-Sometimes you may wish to execute an Artisan command outside of the CLI. For example, you may wish to fire an Artisan command from an HTTP route. Just use the `Artisan` facade:
+Kadang-kadang Anda mungkin ingin menjalankan perintah Artisan diluar CLI. Sebagai contoh, Anda mungkin ingin menembak perintah Artisan dari rute HTTP. Cukup gunakan `Artisan` fasad:
 
 	Route::get('/foo', function()
 	{
@@ -49,7 +49,7 @@ Sometimes you may wish to execute an Artisan command outside of the CLI. For exa
 		//
 	});
 
-You may even queue Artisan commands so they are processed in the background by your [queue workers](/docs/5.0/queues):
+Anda bahkan dapat mengantri Artisan perintah sehingga mereka diproses di latar belakang dengan [pekerja antrian] Anda (/docs/5.0/antrian):
 
 	Route::get('/foo', function()
 	{
@@ -59,21 +59,21 @@ You may even queue Artisan commands so they are processed in the background by y
 	});
 
 <a name="scheduling-artisan-commands"></a>
-## Scheduling Artisan Commands
+## Penjadwalan Perintah Artisan
 
-In the past, developers have generated a Cron entry for each console command they wished to schedule. However, this is a headache. Your console schedule is no longer in source control, and you must SSH into your server to add the Cron entries. Let's make our lives easier. The Laravel command scheduler allows you to fluently and expressively define your command schedule within Laravel itself, and only a single Cron entry is needed on your server.
+Di masa lalu, pengembang telah menghasilkan entri Cron untuk setiap perintah konsol mereka ingin jadwalkan. Namun, ini adalah pusing. Jadwal konsol tidak lagi dalam sumber kontrol, dan Anda harus SSH ke server Anda untuk menambahkan entri Cron. Mari kita membuat hidup kita lebih mudah. Perintah scheduler Laravel memungkinkan Anda untuk lancar dan ekspresif menentukan jadwal perintah Anda dalam Laravel sendiri, dan hanya masuk Cron tunggal diperlukan pada server Anda.
 
-Your command schedule is stored in the `app/Console/Kernel.php` file. Within this class you will see a `schedule` method. To help you get started, a simple example is included with the method. You are free to add as many scheduled jobs as you wish to the `Schedule` object. The only Cron entry you need to add to your server is this:
+Jadwal perintah Anda disimpan dalam `app/Console/Kernel.php` berkas. Dalam kelas ini Anda akan melihat metode `schedule`. Untuk membantu Anda memulai, contoh sederhana disertakan dengan metode. Anda bebas untuk menambahkan sebanyak pekerjaan dijadwalkan Anda ingin obyek `Schedule`. Satu-satunya entri Cron Anda perlu menambahkan ke server Anda adalah ini:
 
 	* * * * * php /path/to/artisan schedule:run 1>> /dev/null 2>&1
 
-This Cron will call the Laravel command scheduler every minute. Then, Laravel evaluates your scheduled jobs and runs the jobs that are due. It couldn't be easier!
+Cron ini akan memanggil perintah scheduler Laravel setiap menit. Kemudian, Laravel mengevaluasi pekerjaan Anda yang dijadwalkan dan menjalankan pekerjaan yang jatuh tempo. Ini tidak bisa lebih mudah!
 
-### More Scheduling Examples
+### Contoh Penjadwalan Lainnya
 
-Let's look at a few more scheduling examples:
+Mari kita lihat beberapa contoh penjadwalan lainnya:
 
-#### Scheduling Closures
+#### Penjadwalan Closures
 
 	$schedule->call(function()
 	{
@@ -81,15 +81,15 @@ Let's look at a few more scheduling examples:
 
 	})->hourly();
 
-#### Scheduling Terminal Commands
+#### Penjadwalan Perintah Terminal
 
 	$schedule->exec('composer self-update')->daily();
 
-#### Manual Cron Expression
+#### Pernyataan Cron Manual
 
 	$schedule->command('foo')->cron('* * * * *');
 
-#### Frequent Jobs
+#### Frekuensi Jobs
 
 	$schedule->command('foo')->everyFiveMinutes();
 
@@ -97,34 +97,34 @@ Let's look at a few more scheduling examples:
 
 	$schedule->command('foo')->everyThirtyMinutes();
 
-#### Daily Jobs
+#### Jobs Harian
 
 	$schedule->command('foo')->daily();
 
-#### Daily Jobs At A Specific Time (24 Hour Time)
+#### Jobs sehari-hari pada waktu tertentu (Waktu 24 Jam)
 
 	$schedule->command('foo')->dailyAt('15:00');
 
-#### Twice Daily Jobs
+#### Jobs Dua Kali Sehari
 
 	$schedule->command('foo')->twiceDaily();
 
-#### Job That Runs Every Weekday
+#### Job yang Berjalan Setiap hari kerja
 
 	$schedule->command('foo')->weekdays();
 
-#### Weekly Jobs
+#### Job Mingguan
 
 	$schedule->command('foo')->weekly();
 
 	// Schedule weekly job for specific day (0-6) and time...
 	$schedule->command('foo')->weeklyOn(1, '8:00');
 
-#### Monthly Jobs
+#### Job Bulanan
 
 	$schedule->command('foo')->monthly();
 
-#### Job That Runs On Specific Days
+#### Job yang Berjalan Pada Hari Tertentu
 
 	$schedule->command('foo')->mondays();
 	$schedule->command('foo')->tuesdays();
@@ -134,31 +134,31 @@ Let's look at a few more scheduling examples:
 	$schedule->command('foo')->saturdays();
 	$schedule->command('foo')->sundays();
 
-#### Limit The Environment The Jobs Should Run In
+#### Membatasi Lingkungan Jobs yang Harus Jalankan
 
 	$schedule->command('foo')->monthly()->environments('production');
 
-#### Indicate The Job Should Run Even When Application Is In Maintenance Mode
+#### Menunjukkan Job yang Harus dijalankan Bahkan Ketika Aplikasi Apakah Dalam Mode Maintenance
 
 	$schedule->command('foo')->monthly()->evenInMaintenanceMode();
 
-#### Only Allow Job To Run When Callback Is True
+#### Hanya Mengizinkan Job Untuk dijalankan Ketika Callback adalah Benar
 
 	$schedule->command('foo')->monthly()->when(function()
 	{
 		return true;
 	});
 
-#### E-mail The Output Of A Scheduled Job
+#### Emailkan Output dari Sebuah Job yang Telah Dijadwalkan
 
 	$schedule->command('foo')->sendOutputTo($filePath)->emailOutputTo('foo@example.com');
 
-> **Note:** You must send the output to a file before it can be mailed.
+> **Catatan:** Anda harus mengirim output ke file sebelum dapat dikirimkan.
 
-#### Send The Output Of The Scheduled Job To A Given Location
+#### Kirim Output Dari Job yang Dijadwalkan ke Sebuah Lokasi yang Diberikan
 
 	$schedule->command('foo')->sendOutputTo($filePath);
 
-#### Ping A Given URL After The Job Runs
+#### Ping Sebuah URL yang Diberikan Setelah Job Dijalankan
 
 	$schedule->command('foo')->thenPing($url);
