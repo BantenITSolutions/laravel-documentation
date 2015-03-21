@@ -22,19 +22,19 @@ Jika aplikasi Anda tidak menggunakan Eloquent, Anda dapat menggunakan driver ote
 <a name="authenticating-users"></a>
 ## Otentikasi Pengguna
 
-Laravel ships with two authentication related controllers out of the box. The `AuthController` handles new user registration and "logging in", while the `PasswordController` contains the logic to help existing users reset their forgotten passwords.
+Laravel diantarkan dengan dua kontroler otentikasi terkait di luar kotak. `AuthController` menangani pendaftaran pengguna baru dan "log in", sedangkan PasswordController berisi logika untuk membantu pengguna yang ada mereset password mereka yang lupa.
 
-Each of these controllers uses a trait to include their necessary methods. For many applications, you will not need to modify these controllers at all. The views that these controllers render are located in the `resources/views/auth` directory. You are free to customize these views however you wish.
+Masing-masing kontroler ini menggunakan trait untuk memasukkan metode yang diperlukan mereka. Untuk banyak aplikasi, Anda tidak perlu mengubah kontroler ini sama sekali. Views yang digunakan kontroler ini terletak di sumber `resources/views/auth` direktori. Anda bebas untuk menyesuaikan pandangan ini dengan yang Anda inginkan.
 
 ### The User Registrar
 
-To modify the form fields that are required when a new user registers with your application, you may modify the `App\Services\Registrar` class. This class is responsible for validating and creating new users of your application.
+Untuk memodifikasi kolom formulir yang diperlukan ketika pengguna baru register dengan aplikasi Anda, Anda dapat memodifikasi kelas `App\Services\Registrar`. Kelas ini bertanggung jawab untuk memvalidasi dan menciptakan pengguna baru aplikasi Anda.
 
-The `validator` method of the `Registrar` contains the validation rules for new users of the application, while the `create` method of the `Registrar` is responsible for creating new `User` records in your database. You are free to modify each of these methods as you wish. The `Registrar` is called by the `AuthController` via the methods contained in the `AuthenticatesAndRegistersUsers` trait.
+Metode `validator` dari `Registrar` berisi aturan validasi untuk pengguna baru aplikasi, sedangkan metode `create` dari `Registrar` bertanggung jawab untuk menciptakan record `User` baru dalam database Anda. Anda bebas untuk mengubah setiap metode tersebut sesuai keinginan. `Registrar` yang dipanggil oleh` AuthController` melalui metode yang terkandung dalam `AuthenticatesAndRegistersUsers` trait.
 
 #### Manual Authentication
 
-If you choose not to use the provided `AuthController` implementation, you will need to manage the authentication of your users using the Laravel authentication classes directly. Don't worry, it's still a cinch! First, let's check out the `attempt` method:
+Jika Anda memilih untuk tidak menggunakan implementasi `AuthController` yang disediakan, Anda akan perlu untuk mengelola otentikasi pengguna Anda menggunakan kelas otentikasi Laravel langsung. Jangan khawatir, itu masih sesuatu yg mudah! Pertama, mari kita periksa metode `attempt`:
 
 	<?php namespace App\Http\Controllers;
 
