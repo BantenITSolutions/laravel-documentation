@@ -1,26 +1,26 @@
-# Authentication
+# Otentikasi
 
-- [Introduction](#introduction)
-- [Authenticating Users](#authenticating-users)
-- [Retrieving The Authenticated User](#retrieving-the-authenticated-user)
-- [Protecting Routes](#protecting-routes)
+- [Pengantar](#introduction)
+- [Otentikasi Pengguna](#authenticating-users)
+- [Mengambil Pengguna yang Terautentikasi](#retrieving-the-authenticated-user)
+- [Melindungi Routes](#protecting-routes)
 - [HTTP Basic Authentication](#http-basic-authentication)
 - [Password Reminders & Reset](#password-reminders-and-reset)
 - [Social Authentication](#social-authentication)
 
 <a name="introduction"></a>
-## Introduction
+## Pengantar
 
-Laravel makes implementing authentication very simple. In fact, almost everything is configured for you out of the box. The authentication configuration file is located at `config/auth.php`, which contains several well documented options for tweaking the behavior of the authentication services.
+Laravel membuat otentikasi pelaksanaan sangat sederhana. Pada kenyataannya, hampir semua yang dikonfigurasi untuk Anda dari kotak. File konfigurasi otentikasi terletak di 'config/auth.php', yang berisi beberapa pilihan yang didokumentasikan dengan baik untuk tweaker perilaku Layanan otentikasi.
 
-By default, Laravel includes an `App\User` model in your `app` directory. This model may be used with the default Eloquent authentication driver.
+Secara default, Laravel menyertakan model 'App\User' dalam direktori 'app'. Model ini dapat digunakan dengan driver bawaan otentikasi Eloquent.
 
-Remember: when building the database schema for this model, make the password column at least 60 characters. Also, before getting started, make sure that your `users` (or equivalent) table contains a nullable, string `remember_token` column of 100 characters. This column will be used to store a token for "remember me" sessions being maintained by your application. This can be done by using `$table->rememberToken();` in a migration. Of course, Laravel 5 ships migrations for these columns out of the box!
+Ingat: ketika membangun skema database untuk model ini, buatlah kolom kata sandi setidaknya 60 karakter. Juga, sebelum memulai, pastikan bahwa tabel 'pengguna' (atau setara) Anda berisi kolom nullable, string 'remember_token' dari 100 karakter. Kolom ini akan digunakan untuk menyimpan token untuk "remember me" sesi yang dipelihara oleh aplikasi Anda. Ini dapat dilakukan dengan menggunakan '$table->rememberToken();' dalam  file migrasi. Tentu saja, Laravel 5 mengirim migrasi untuk kolom ini keluar dari kotak!
 
-If your application is not using Eloquent, you may use the `database` authentication driver which uses the Laravel query builder.
+Jika aplikasi Anda tidak menggunakan Eloquent, Anda dapat menggunakan driver otentikasi 'database' yang menggunakan Laravel query builder.
 
 <a name="authenticating-users"></a>
-## Authenticating Users
+## Otentikasi Pengguna
 
 Laravel ships with two authentication related controllers out of the box. The `AuthController` handles new user registration and "logging in", while the `PasswordController` contains the logic to help existing users reset their forgotten passwords.
 
